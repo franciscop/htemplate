@@ -12,34 +12,42 @@ A dead simple and tiny template system. Stop repeating yourself. But why?
 
 First, your html:
 
-    <div class="food"></div>
+```html
+<div class="food"></div>
 
-    <template class="product">
-      <article class="card">
-        <header>
-          <h2 class="title"></h2>
-        </header>
-        <img>
-      </article>
-    </template>
+<template class="product">
+  <article class="card">
+    <header>
+      <h2 class="title"></h2>
+    </header>
+    <img>
+  </article>
+</template>
+```
 
 Then your javascript:
 
-    var products = ['apple', 'strawberry', 'pear', 'banana'];
+```js
+var products = ['apple', 'strawberry', 'pear', 'banana'];
 
-    template('template.product', products, function(product){
-      this.querySelector('.title').innerHTML = product.name;
-      this.querySelector('img').setAttribute('src', product.name + '.jpg');
-      }).into('.food');
+template('template.product', products, function(product){
+  this.querySelector('.title').innerHTML = product.name;
+  this.querySelector('img').setAttribute('src', product.name + '.jpg');
+}).into('.food');
+```
 
 
 ## Use it
 
-Just download template.min.js and include it in your page:
+Install it with bower:
 
-    <script src="template.min.js"></script>
+    bower install htemplate
 
-Bower is coming
+Or just download template.min.js and include it in your page:
+
+```html
+<script src="template.min.js"></script>
+```
 
 
 ## Testing

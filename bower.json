@@ -10,12 +10,9 @@
     "template",
     "javascript"
   ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/franciscop/htemplate.git"
+  },
+  "license": "MIT"
 }
