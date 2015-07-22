@@ -32,7 +32,7 @@ It will return an instance of itself that should be used later on with either `a
 
 ### `selector`
 
-This is the template itself. It can be a css selector or an html element. Examples:
+This is the template itself. It can be a css selector or an html element. Note that the final template will be what's **inside** this html element, excluding the element itself. Really useful for using the *new* [html's template element](http://www.html5rocks.com/en/tutorials/webcomponents/template/). Examples:
 
 ```js
 // Using a simple css selector
