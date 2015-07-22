@@ -28,7 +28,7 @@ The main function is called `template`. You use it in this way:
 template(selector, data, callback);
 ```
 
-Where the arguments are:
+It will return an instance of itself that should be used later on with either `appendTo` or `into` to push it to some section of the html. The arguments for `template` are:
 
 ### `selector`
 
@@ -84,6 +84,24 @@ template('.profile', people, function(person){
   });
 ```
 
+
+### .into(selector)
+
+Use it to indicate where to put the generated templates. It will overwrite anything already in there. The selector arguments behaves in the same way as the first argument of `template()`
+
+```js
+// Refresh the current profiles
+template(...).into('.profiles');
+```
+
+### .appendTo(selector)
+
+Use it to indicate where to put the generated templates. They will be appended to anything in there. The selector arguments behaves in the same way as the first argument of `template()`
+
+```js
+// Add more profiles
+template(...).appendTo('.profiles');
+```
 
 
 ## Small but complete example
