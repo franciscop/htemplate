@@ -23,7 +23,7 @@ Or just download template.min.js and include it in your page:
 
 ## Small but complete example
 
-To see other examples go to `/examples/index.html` in your browser and other examples will be shown. Now for a simple example, the html:
+To see other examples check out `/examples` in your browser. Now for a simple example, the html:
 
 ```html
 <div class="food"></div>
