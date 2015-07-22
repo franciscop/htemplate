@@ -7,8 +7,86 @@ A dead simple and tiny template system. Stop repeating yourself. But why?
 - It was fun to make it and it's fun to use it
 
 
+## Install it
 
-## Example
+Install it with bower:
+
+    bower install htemplate
+
+Or just download template.min.js and include it in your page:
+
+```html
+<script src="template.min.js"></script>
+```
+
+
+## Documentation
+
+The main function is called `template`. You use it in this way:
+
+```js
+template(selector, data, callback);
+```
+
+Where the arguments are:
+
+### `selector`
+
+This is the template itself. It can be a css selector or an html element. Examples:
+
+```js
+// Using a simple css selector
+template('.profile', {});
+
+// Using an element
+var tpl = document.querySelector('.profile');
+template(tpl, {});
+
+// Using a complex selector with jQuery:
+var tpl = $('.profile:not(.inactive)').first();
+  template(tpl, {});
+```
+
+### `data`
+
+The data that will fill your templates. This can be an `array` or a single variable. If you put it empty nothing will be added, in case that you just want to clone an element you can use an empty string or object like this: `''` or `{}`. Examples:
+
+```js
+// Using a simple string:
+template('.profile', "Peter");
+
+// Using an array of names:
+template('.profile', ["Peter", "Martha", "John"]);
+
+// Using an array of objects:
+var people = [
+  { name: "Peter", birthday: "15/03" },
+  { name: "Martha", birthday: "26/08"},
+  { name: "Martha", birthday: "21/11"}
+];
+template('.profile', people);
+```
+
+### `callback`
+
+This defines the relationships between each of the elements from the data and the template. It is executed once per each of the data's array elements, once if data is a single element or never if data is null. It accepts 3 parameters, similarly to most of javascript's `Array` methods. The first one is the current element, second one current index and third one the whole data. It is highly relevant that `this` within this function will be the current template. But let's see it with few examples:
+
+```js
+// Let's display their birthdays
+var people = [
+  { name: "Peter", birthday: "15/03" },
+  { name: "Martha", birthday: "26/08"},
+  { name: "Martha", birthday: "21/11"}
+];
+template('.profile', people, function(person){
+  this.querySelector('.name').innerHTML = person.name;
+  this.querySelector('.birthday').innerHTML = person.birthday;
+  });
+```
+
+
+
+## Small but complete example
 
 To see other examples go to `/examples/index.html` in your browser and other examples will be shown. Now for a simple example, the html:
 
@@ -48,19 +126,6 @@ template('template.product', products, function(product){
   $('.title', this).html(product.name);
   $('img', this).attr('src', product.name + '.jpg');
 }).into('.food');
-```
-
-
-## Use it
-
-Install it with bower:
-
-    bower install htemplate
-
-Or just download template.min.js and include it in your page:
-
-```html
-<script src="template.min.js"></script>
 ```
 
 
