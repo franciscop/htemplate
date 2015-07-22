@@ -8,9 +8,9 @@ A dead simple and tiny template system. Stop repeating yourself. But why?
 
 
 
-## Small example
+## Example
 
-First, your html:
+To see other examples go to `/examples/index.html` in your browser and other examples will be shown. Your html:
 
 ```html
 <div class="food"></div>
