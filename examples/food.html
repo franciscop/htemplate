@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="http://cdn.jsdelivr.net/picnicss/4.1.1/plugins.min.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet" type="text/css"></link>
+  </head>
+  <body>
+    <a class="home" href="index.html">All examples</a>
+    <h1>Food display</h1>
+
+    <div class="food row"></div>
+
+    <template class="product">
+      <article class="card">
+        <header>
+          <h2 class="title"></h2>
+        </header>
+        <img>
+      </article>
+    </template>
+
+    <template class="code">
+var products = ['apple', 'strawberry', 'pear', 'banana'];
+
+template('template.product', products, function(product){
+  var img = 'img/' + product + '.jpg';
+  this.querySelector('img').setAttribute('src', img);
+  this.querySelector('.title').innerHTML = product;
+}).into('.food');</template>
+
+    <pre></pre>
+    <script src="../template.js"></script>
+    <script class="code"></script>
+    <script>
+      // I'm doing this to make sure that the code executed and the code displayed
+      // stays in sync
+      template('template.code', '').into('script.code');
+      template('template.code', '').into('pre');
+    </script>
+  </body>
+</html>

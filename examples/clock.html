@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="http://cdn.jsdelivr.net/picnicss/4.1.1/plugins.min.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet" type="text/css"></link>
+    <style>
+      main.clock {
+        font-size: 1.2em;
+        border: 3px solid #ff851b;
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        color: #0074d9;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="home" href="index.html">All examples</a>
+    <h1>Simple wall clock</h1>
+
+    <main class="clock"></main>
+
+    <template class="clock">
+      <span class="hour">00</span> :
+      <span class="minute">00</span> :
+      <span class="second">00</span>
+    </template>
+
+    <script src="../template.js"></script>
+    <script>
+
+      // Update the clock every 100ms
+      setInterval(function(){
+        template('template.clock', new Date(), function(time){
+          this.querySelector(".hour").innerHTML = zeroPad(time.getHours());
+          this.querySelector(".minute").innerHTML = zeroPad(time.getMinutes());
+          this.querySelector(".second").innerHTML = zeroPad(time.getSeconds());
+        }).into('main.clock');
+      }, 100);
+
+      // Helper function to pad 0s
+      function zeroPad(num) {
+        return (num < 10) ? "0" + num : num;
+        }
+
+    </script>
+  </body>
+</html>

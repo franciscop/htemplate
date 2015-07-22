@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="http://cdn.jsdelivr.net/picnicss/4.1.1/picnic.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Template engine for HTML</h1>
+
+    <p>Build components based on templates you are already using.</p>
+    <p>Keep your html semantic and the logic in the javascript</p>
+
+    <h2>Examples</h2>
+
+    <div class="examples"></div>
+
+    <template class="example">
+      <a class="button" href=""></a>
+    </template>
+
+    <p>PS, this example list was made with htemplate.js</p>
+
+    <script src="../template.js"></script>
+    <script>
+      template('template.example', ['users', 'food', 'clock'], function(example){
+        this.querySelector('a').setAttribute('href', example + '.html');
+        this.querySelector('a').innerHTML = example;
+      }).into('.examples');
+    </script>
+  </body>
+</html>

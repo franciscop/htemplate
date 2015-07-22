@@ -1,0 +1,21 @@
+{
+  "name": "htemplate",
+  "version": "0.1",
+  "authors": [
+    "Francisco Presencia <publicfrancisco@hotmail.com>"
+  ],
+  "description": "A dead simple and tiny template system. Stop repeating yourself",
+  "main": "template.min.js",
+  "keywords": [
+    "template",
+    "javascript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

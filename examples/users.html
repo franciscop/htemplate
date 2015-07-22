@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="http://cdn.jsdelivr.net/picnicss/4.1.1/plugins.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+      .users {
+        width: 600px;
+        margin: 0 auto;
+        overflow: auto;
+      }
+      .user {
+        width: 160px;
+        float: left;
+        margin: 20px;
+      }
+      .points {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="home" href="index.html">All examples</a>
+    <h1>User's food choice example</h1>
+
+    <div class="users"></div>
+
+    <template class="user">
+      <div class="card user">
+        <header>
+          <div class="points"></div>
+          <h3 class="name"></h3>
+        </header>
+        <img />
+      </div>
+    </template>
+
+    <script src='../template.js'></script>
+    <script>
+      // Mockup code
+      function ajax(url, callback){
+        var fakeusers = [
+          { name: 'Tom',    points: 15, picture: 'apple.jpg' },
+          { name: 'Laura',  points: 43, picture: 'banana.jpg' },
+          { name: 'Peter',  points: 28, picture: 'egg.jpg' },
+          { name: 'Martha', points: 14, picture: 'strawberry.jpg' },
+          { name: 'Sarah',  points: 76, picture: 'orange.jpg' },
+          { name: 'John',   points: 16, picture: 'pear.jpg' }
+          ];
+        callback.call(this, fakeusers);
+      }
+
+      // Load the user list through ajax
+      ajax('api/path/users', function(users){
+
+        // Load the users templates
+        template('template.user', users, function(user){
+
+          // Fill the template with data
+          this.querySelector('.name').innerHTML = user.name;
+          this.querySelector('.points').innerHTML = user.points;
+          this.querySelector('img').setAttribute('src', 'img/' + user.picture);
+        }).into('.users');
+      });
+    </script>
+
+    <pre>
+// Mockup code
+function ajax(url, callback){
+  var fakeusers = [
+    { name: 'Tom',    points: 15, picture: 'apple.jpg' },
+    { name: 'Laura',  points: 43, picture: 'banana.jpg' },
+    { name: 'Peter',  points: 28, picture: 'egg.jpg' },
+    { name: 'Martha', points: 14, picture: 'strawberry.jpg' },
+    { name: 'Sarah',  points: 76, picture: 'orange.jpg' },
+    { name: 'John',   points: 16, picture: 'pear.jpg' }
+    ];
+  callback.call(this, fakeusers);
+}
+
+// Load the user list through ajax
+ajax('api/path/users', function(users){
+
+  // Load the users templates
+  template('template.user', users, function(user){
+
+    // Fill the template with data
+    this.querySelector('.name').innerHTML = user.name;
+    this.querySelector('.points').innerHTML = user.points;
+    this.querySelector('img').setAttribute('src', 'img/' + user.picture);
+  }).into('.users');
+});</pre>
+
+
+  </body>
+</html>

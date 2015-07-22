@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="http://cdn.jsdelivr.net/picnicss/4.1.1/picnic.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <p>Press F12 and watch for errors</p>
+
+    <div class="container"></div>
+
+    <template class="test">
+      <a class="button" href="">a</a>
+    </template>
+
+    <script src="../template.js"></script>
+    <script>
+      function logtime(callback){
+        var start = new Date().getTime();
+        callback();
+        var total = (new Date().getTime() - start) + 'ms';
+        console.log('Execution time for "' + callback.name + '": ' + total);
+      }
+
+      // Generate an array with 10000 elements
+      var testdata = Array.apply(null, {length: 1000}).map(Number.call, Math.abs);
+
+      logtime(function simple(){
+
+        template('template.test', testdata).into('.container');
+      });
+
+      logtime(function partial(){
+        var test = template();
+
+        test.data = testdata;
+
+        test.callback = function(data){
+          this.querySelector('.button').innerHTML = data;
+        };
+
+        test.selector = '.test';
+
+        test.into('.container');
+      });
+    </script>
+  </body>
+</html>
