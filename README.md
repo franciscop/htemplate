@@ -42,7 +42,7 @@ jQuery makes it slightly easier:
 var products = ['apple', 'strawberry', 'pear', 'banana'];
 
 template('template.product', products, function(product){
-  // Remember the this to make it target only the current template
+  // Remember to put "this" to make it target only the current template
   $('.title', this).html(product.name);
   $('img', this).attr('src', product.name + '.jpg');
 }).into('.food');
