@@ -20,6 +20,51 @@ Or just download template.min.js and include it in your page:
 ```
 
 
+
+## Small but complete example
+
+To see other examples go to `/examples/index.html` in your browser and other examples will be shown. Now for a simple example, the html:
+
+```html
+<div class="food"></div>
+
+<template class="product">
+  <article class="card">
+    <header>
+      <h2 class="title"></h2>
+    </header>
+    <img>
+  </article>
+</template>
+```
+
+Then the javascript:
+
+```js
+// The list of products that you want to display
+var products = ['apple', 'strawberry', 'pear', 'banana'];
+
+// Use the library. What is the template, the products, and how they are related
+template('template.product', products, function(product){
+  this.querySelector('.title').innerHTML = product.name;
+  this.querySelector('img').setAttribute('src', product.name + '.jpg');
+}).into('.food');
+```
+
+jQuery makes it slightly easier:
+
+```js
+var products = ['apple', 'strawberry', 'pear', 'banana'];
+
+template('template.product', products, function(product){
+  // Remember to put "this" to make it target only the current template
+  $('.title', this).html(product.name);
+  $('img', this).attr('src', product.name + '.jpg');
+}).into('.food');
+```
+
+
+
 ## Documentation
 
 The main function is called `template`. You use it in this way:
@@ -101,49 +146,6 @@ Use it to indicate where to put the generated templates. They will be appended t
 ```js
 // Add more profiles
 template(...).appendTo('.profiles');
-```
-
-
-## Small but complete example
-
-To see other examples go to `/examples/index.html` in your browser and other examples will be shown. Now for a simple example, the html:
-
-```html
-<div class="food"></div>
-
-<template class="product">
-  <article class="card">
-    <header>
-      <h2 class="title"></h2>
-    </header>
-    <img>
-  </article>
-</template>
-```
-
-Then the javascript:
-
-```js
-// The list of products that you want to display
-var products = ['apple', 'strawberry', 'pear', 'banana'];
-
-// Use the library. What is the template, the products, and how they are related
-template('template.product', products, function(product){
-  this.querySelector('.title').innerHTML = product.name;
-  this.querySelector('img').setAttribute('src', product.name + '.jpg');
-}).into('.food');
-```
-
-jQuery makes it slightly easier:
-
-```js
-var products = ['apple', 'strawberry', 'pear', 'banana'];
-
-template('template.product', products, function(product){
-  // Remember to put "this" to make it target only the current template
-  $('.title', this).html(product.name);
-  $('img', this).attr('src', product.name + '.jpg');
-}).into('.food');
 ```
 
 
