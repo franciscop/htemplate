@@ -130,7 +130,7 @@ template('.profile', people, function(person){
 ```
 
 
-### .into(selector)
+### `.into(selector)`
 
 Use it to indicate where to put the generated templates. It will overwrite anything already in there. The selector arguments behaves in the same way as the first argument of `template()`
 
@@ -139,7 +139,7 @@ Use it to indicate where to put the generated templates. It will overwrite anyth
 template(...).into('.profiles');
 ```
 
-### .appendTo(selector)
+### `.appendTo(selector)`
 
 Use it to indicate where to put the generated templates. They will be appended to anything in there. The selector arguments behaves in the same way as the first argument of `template()`
 
