@@ -93,7 +93,7 @@ template(tpl, {});
 
 // Using a complex selector with jQuery:
 var tpl = $('.profile:not(.inactive)').first();
-  template(tpl, {});
+template(tpl, {});
 ```
 
 ### `data`
