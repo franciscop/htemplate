@@ -23,7 +23,7 @@ Or just download template.min.js and include it in your page:
 
 ## Small but complete example
 
-To see other examples check out `/examples` in your browser. Now for a simple example, the html:
+To see other examples check out `/examples` in your browser. For a simple example, the html:
 
 ```html
 <div class="food"></div>
@@ -46,8 +46,12 @@ var products = ['apple', 'strawberry', 'pear', 'banana'];
 
 // Use the library. What is the template, the products, and how they are related
 template('template.product', products, function(product){
+
+  // "this" refers to the current template
   this.querySelector('.title').innerHTML = product.name;
   this.querySelector('img').setAttribute('src', product.name + '.jpg');
+
+// Tell it where to put it. It's lazy-loading
 }).into('.food');
 ```
 
