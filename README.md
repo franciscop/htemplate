@@ -25,7 +25,7 @@ Or just download template.min.js and include it in your page:
 The main function is called `template`. You use it in this way:
 
 ```js
-template(selector, data, callback);
+template(selector, data, callback).into(selector);
 ```
 
 It will return an instance of itself that should be used later on with either `appendTo` or `into` to push it to some section of the html. The arguments for `template` are:
