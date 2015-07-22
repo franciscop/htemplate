@@ -10,7 +10,7 @@ A dead simple and tiny template system. Stop repeating yourself. But why?
 
 ## Example
 
-To see other examples go to `/examples/index.html` in your browser and other examples will be shown. Your html:
+To see other examples go to `/examples/index.html` in your browser and other examples will be shown. Now for a simple example, the html:
 
 ```html
 <div class="food"></div>
@@ -25,7 +25,7 @@ To see other examples go to `/examples/index.html` in your browser and other exa
 </template>
 ```
 
-Then your javascript:
+Then the javascript:
 
 ```js
 var products = ['apple', 'strawberry', 'pear', 'banana'];
@@ -33,6 +33,18 @@ var products = ['apple', 'strawberry', 'pear', 'banana'];
 template('template.product', products, function(product){
   this.querySelector('.title').innerHTML = product.name;
   this.querySelector('img').setAttribute('src', product.name + '.jpg');
+}).into('.food');
+```
+
+jQuery makes it slightly easier:
+
+```js
+var products = ['apple', 'strawberry', 'pear', 'banana'];
+
+template('template.product', products, function(product){
+  // Remember the this to make it target only the current template
+  $('.title', this).html(product.name);
+  $('img', this).attr('src', product.name + '.jpg');
 }).into('.food');
 ```
 
