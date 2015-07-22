@@ -28,8 +28,10 @@ To see other examples go to `/examples/index.html` in your browser and other exa
 Then the javascript:
 
 ```js
+// The list of products that you want to display
 var products = ['apple', 'strawberry', 'pear', 'banana'];
 
+// Use the library. What is the template, the products, and how they are related
 template('template.product', products, function(product){
   this.querySelector('.title').innerHTML = product.name;
   this.querySelector('img').setAttribute('src', product.name + '.jpg');
