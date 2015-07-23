@@ -17,7 +17,7 @@
   </head>
   <body>
     <a class="home" href="index.html">All examples</a>
-    <h1>Simple wall clock</h1>
+    <h1>Simple digital clock</h1>
 
     <main class="clock"></main>
 
@@ -27,11 +27,25 @@
       <span class="second">00</span>
     </template>
 
+    <pre>
+// Update the clock every 100ms
+setInterval(function(){
+  template('template.clock', new Date(), function(time){
+
+    // Update the template with the current time
+    this.querySelector(".hour").innerHTML = zeroPad(time.getHours());
+    this.querySelector(".minute").innerHTML = zeroPad(time.getMinutes());
+    this.querySelector(".second").innerHTML = zeroPad(time.getSeconds());
+  }).into('main.clock');
+}, 100);</pre>
+
     <script src="../template.js"></script>
     <script>
 
       // Update the clock every 100ms
       setInterval(function(){
+
+        // Update the template with the current time
         template('template.clock', new Date(), function(time){
           this.querySelector(".hour").innerHTML = zeroPad(time.getHours());
           this.querySelector(".minute").innerHTML = zeroPad(time.getMinutes());
@@ -43,7 +57,6 @@
       function zeroPad(num) {
         return (num < 10) ? "0" + num : num;
         }
-
     </script>
   </body>
 </html>

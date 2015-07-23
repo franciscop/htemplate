@@ -5,24 +5,28 @@
     <link href="http://cdn.jsdelivr.net/picnicss/4.1.1/plugins.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <style>
+      header {
+        white-space: nowrap;
+      }
       .users {
-        width: 600px;
-        margin: 0 auto;
         overflow: auto;
       }
       .user {
-        width: 160px;
+        width: 23%;
         float: left;
-        margin: 20px;
+        margin: 1%;
       }
       .points {
         float: right;
+      }
+      .color {
+        height: 50px;
       }
     </style>
   </head>
   <body>
     <a class="home" href="index.html">All examples</a>
-    <h1>User's food choice example</h1>
+    <h1>User's color choice example</h1>
 
     <div class="users"></div>
 
@@ -32,22 +36,27 @@
           <div class="points"></div>
           <h3 class="name"></h3>
         </header>
-        <img />
+        <div class="color"></div>
       </div>
     </template>
 
+    <script src='chance.js'></script>
     <script src='../template.js'></script>
     <script>
+      var chance = new Chance();
       // Mockup code
       function ajax(url, callback){
-        var fakeusers = [
-          { name: 'Tom',    points: 15, picture: 'apple.jpg' },
-          { name: 'Laura',  points: 43, picture: 'banana.jpg' },
-          { name: 'Peter',  points: 28, picture: 'egg.jpg' },
-          { name: 'Martha', points: 14, picture: 'strawberry.jpg' },
-          { name: 'Sarah',  points: 76, picture: 'orange.jpg' },
-          { name: 'John',   points: 16, picture: 'pear.jpg' }
-          ];
+
+        var fakeusers = chance.array({
+          length: 12,
+          fill: function(){
+            return {
+              name: chance.first(),
+              color: chance.color({format: 'hex'}),
+              points: chance.natural({ min: 1, max: 100 })
+            };
+          }
+        });
         callback.call(this, fakeusers);
       }
 
@@ -60,25 +69,12 @@
           // Fill the template with data
           this.querySelector('.name').innerHTML = user.name;
           this.querySelector('.points').innerHTML = user.points;
-          this.querySelector('img').setAttribute('src', 'img/' + user.picture);
+          this.querySelector('.color').style.backgroundColor = user.color;
         }).into('.users');
       });
     </script>
 
     <pre>
-// Mockup code
-function ajax(url, callback){
-  var fakeusers = [
-    { name: 'Tom',    points: 15, picture: 'apple.jpg' },
-    { name: 'Laura',  points: 43, picture: 'banana.jpg' },
-    { name: 'Peter',  points: 28, picture: 'egg.jpg' },
-    { name: 'Martha', points: 14, picture: 'strawberry.jpg' },
-    { name: 'Sarah',  points: 76, picture: 'orange.jpg' },
-    { name: 'John',   points: 16, picture: 'pear.jpg' }
-    ];
-  callback.call(this, fakeusers);
-}
-
 // Load the user list through ajax
 ajax('api/path/users', function(users){
 
@@ -88,7 +84,7 @@ ajax('api/path/users', function(users){
     // Fill the template with data
     this.querySelector('.name').innerHTML = user.name;
     this.querySelector('.points').innerHTML = user.points;
-    this.querySelector('img').setAttribute('src', 'img/' + user.picture);
+    this.querySelector('.color').style.backgroundColor = user.color;
   }).into('.users');
 });</pre>
 
